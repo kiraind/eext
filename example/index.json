@@ -1,0 +1,9 @@
+{
+  "users": [
+    { "id": 1, "name": "Alex", "email": "hoho@hehe.com" },
+    { "id": 2, "name": "Lisa", "email": "hihi@haha.com" },
+    { "id": 3, "name": "Vitya", "email": "viktors@inbox.lv" },
+    { "id": 4, "name": "Danya", "email": "ssss@sss.ru" },
+    { "id": 5, "name": "Kira", "email": "eee@eeeeeeeeeeeee.ee" }
+  ]
+}
