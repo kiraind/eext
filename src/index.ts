@@ -1,23 +1,16 @@
 #!/usr/bin/env node
 
 import http from 'http'
-import commandLineArgs, { OptionDefinition } from 'command-line-args'
 
-import handleGet from './handleGet'
+import { options, srcPath } from './config'
+
 import log from './util/log'
-import path from 'path'
+import handleGet from './handleGet'
+import addHotReloads from './hotReloads'
 
-const optionDefinitions: OptionDefinition[] = [
-  // { name: 'hotreload', alias: 'r', type: Boolean },
-  { name: 'src', alias: 's', type: String, defaultValue: '.' },
-  { name: 'port', alias: 'p', type: Number, defaultValue: 8080 }
-]
-
-const options = commandLineArgs(optionDefinitions)
-
-http.createServer((req, res) => {
+const server = http.createServer((req, res) => {
   if (req.method === 'GET') {
-    handleGet(path.join(process.cwd(), options.src), req, res).catch(err => {
+    handleGet(req, res).catch(err => {
       res.writeHead(500, { 'Content-Type': 'text/plain' })
       res.end()
       console.error(err)
@@ -35,6 +28,12 @@ http.createServer((req, res) => {
     res.write('Method Not Allowed\n')
     res.end()
   }
-}).listen(options.port)
+})
 
-log(`Static file server running at\n  => http://localhost:${options.port as number}/\nCTRL + C to shutdown`)
+if (options.hot === true) {
+  addHotReloads(server, srcPath)
+}
+
+server.listen(options.port, () => {
+  log(`Static file server running at\n  => http://localhost:${options.port as number}/\nCTRL + C to shutdown`)
+})
