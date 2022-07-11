@@ -9,9 +9,11 @@ export default async function resolveFile (srcPath: string, pathname: string): P
   for (const attempt of [
     originalFilename,
     originalFilename + '.ejs',
-    originalFilename + '/index.ejs',
     originalFilename + '.html',
-    originalFilename + '/index.html'
+    originalFilename + '.htm',
+    originalFilename + '/index.ejs',
+    originalFilename + '/index.html',
+    originalFilename + '/index.htm'
   ]) {
     try {
       if ((await fs.stat(attempt)).isFile()) {
