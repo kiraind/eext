@@ -1,6 +1,6 @@
 {
   "name": "eext",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -23,6 +23,7 @@
     "ejs": "^3.1.8",
     "ejs-include-regex": "^1.0.0",
     "htmlparser2": "^8.0.1",
+    "mime-types": "^2.1.35",
     "syntax-error": "^1.4.0",
     "ws": "^8.8.0"
   },
@@ -33,7 +34,6 @@
     "@types/node": "^18.0.3",
     "@types/syntax-error": "^1.4.1",
     "@types/ws": "^8.5.3",
-    "mime-types": "^2.1.35",
     "ts-standard": "^11.0.0",
     "typescript": "^4.7.4"
   }
