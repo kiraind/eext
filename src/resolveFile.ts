@@ -5,10 +5,14 @@ import stripTrailingSlash from './util/stripTrailingSlash'
 
 export default async function resolveFile (srcPath: string, pathname: string): Promise<string | null> {
   const originalFilename = stripTrailingSlash(path.join(srcPath, pathname))
-  const filenameEjs = originalFilename + '.ejs'
-  const filenameIndexEjs = originalFilename + '/index.ejs'
 
-  for (const attempt of [originalFilename, filenameEjs, filenameIndexEjs]) {
+  for (const attempt of [
+    originalFilename,
+    originalFilename + '.ejs',
+    originalFilename + '/index.ejs',
+    originalFilename + '.html',
+    originalFilename + '/index.html'
+  ]) {
     try {
       if ((await fs.stat(attempt)).isFile()) {
         return attempt
